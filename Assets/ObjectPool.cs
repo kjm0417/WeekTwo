@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    
+
     public GameObject prefab;
     private List<GameObject> pool = new List<GameObject>();
     public int poolSize = 300;
+
+    private Dictionary<string, ObjectPool> pools = new Dictionary<string, ObjectPool>();
 
     void Start()
     {
@@ -26,6 +30,7 @@ public class ObjectPool : MonoBehaviour
             GameObject obj = pool[i];
             if(!obj.activeInHierarchy)
             {
+                obj.SetActive(true);
                 return obj;
             }
         }
@@ -46,5 +51,23 @@ public class ObjectPool : MonoBehaviour
 
         }
 
+    }
+
+    public void AddPool(string key, ObjectPool pool)
+    {
+        if (!pools.ContainsKey(key))
+        {
+            pools.Add(key, pool);
+        }
+    }
+
+    public ObjectPool GetPool(string key)
+    {
+        if(pools.ContainsKey(key))
+        {
+            return pools[key];
+        }
+
+        return null;
     }
 }
