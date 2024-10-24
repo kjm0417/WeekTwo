@@ -10,5 +10,7 @@ public class QuestDataSO : ScriptableObject
     public int QuestRequiredLevel; //수행레벨
     public int QuestNPC; //npc 번호
     public List<int> QuestPrereQuisites; //선행퀘 리스트
+
+   // public abstract void DebugQuests();
 }
 

@@ -8,4 +8,10 @@ public class MonsterQuestDataSO : QuestDataSO
     [Header("MonsterQuest")]
     public string mosterName;
     public int monsterCount;
+
+    //public override void DebugQuests()
+    //{
+
+    //}
 }
+

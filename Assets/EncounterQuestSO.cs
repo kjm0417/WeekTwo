@@ -8,4 +8,9 @@ public class EncounterQuestSO : QuestDataSO
 {
     [Header("EncounterQuest")]
     public string Goal;//∏Ò«•
+
+    //public override void DebugQuests()
+    //{
+
+    //}
 }
