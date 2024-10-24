@@ -4,70 +4,42 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    
+    [System.Serializable]
+    public class Pool
+    {
+        string name;
+        public GameObject Prefab;
+    }
 
-    public GameObject prefab;
-    private List<GameObject> pool = new List<GameObject>();
     public int poolSize = 300;
 
-    private Dictionary<string, ObjectPool> pools = new Dictionary<string, ObjectPool>();
+    public List<Pool> pools = new List<Pool>();
 
     void Start()
     {
-        // 미리 poolSize만큼 게임오브젝트를 생성한다.
-        for(int i = 0; i < poolSize; i++)
-        {
-            GameObject obj = Instantiate(prefab);
-            obj.SetActive(false);
-        }
+        CratePool();
     }
 
-    public GameObject Get()
+    public void CratePool() //풀 생성
     {
-        // 꺼져있는 게임오브젝트를 찾아 active한 상태로 변경하고 return 한다.
-        for(int i = 0;i < poolSize;i++)
+        foreach(var pool in pools)
         {
-            GameObject obj = pool[i];
-            if(!obj.activeInHierarchy)
+            for(int i = 0;i<poolSize; i++)
             {
-                obj.SetActive(true);
-                return obj;
+                GameObject obj = Instantiate(pool.Prefab,transform);
+                obj.SetActive(false);
             }
         }
-
-        return null;
     }
+
+    //public GameObject Get()
+    //{
+    //    // 꺼져있는 게임오브젝트를 찾아 active한 상태로 변경하고 return 한다.
+    //    if()
+    //}
 
     public void Release(GameObject obj)
     {
         // 게임오브젝트를 deactive한다.
-        for(int i = 0; i<poolSize;i++)
-        {
-            obj = pool[i];
-            if(obj.activeInHierarchy)
-            {
-                obj.SetActive(false);
-            }
-
-        }
-
-    }
-
-    public void AddPool(string key, ObjectPool pool)
-    {
-        if (!pools.ContainsKey(key))
-        {
-            pools.Add(key, pool);
-        }
-    }
-
-    public ObjectPool GetPool(string key)
-    {
-        if(pools.ContainsKey(key))
-        {
-            return pools[key];
-        }
-
-        return null;
     }
 }

@@ -6,6 +6,7 @@ public class QuestManager : MonoBehaviour
 {
     // [구현사항 1] 정적 필드 정의
     private static QuestManager instance;
+
     public List<QuestDataSO> Quests;
 
     // [구현사항 2] 정적 프로퍼티 정의
@@ -45,10 +46,21 @@ public class QuestManager : MonoBehaviour
 
     private void Start()
     {
-        //QuestType();
+        QuestType();
     }
 
-    ////구현사항 3
+    //Q3 구현 3
+    public void QuestType()
+    {
+        int questIndex = 1;
+        foreach(QuestDataSO item in Quests)
+        {
+            Debug.Log($"Quest {questIndex} - {item.QuestName} (최소 레벨 {item.QuestRequiredLevel})");
+            questIndex++;
+        }
+    }
+
+    ////선택사항
     //public void QuestType()
     //{
     //    int questIndex = 1;
@@ -67,5 +79,19 @@ public class QuestManager : MonoBehaviour
     //        }
     //        questIndex++;
     //    }
+    //}
+
+    //선택사항
+    //public void QuestType()
+    //{
+    //    int questIndex = 1;
+       
+    //    foreach(QuestDataSO quest in Quests)
+    //    {
+    //        Debug.Log($"Quest {questIndex} - ");
+    //        quest.DebugQuests();
+    //        questIndex++;
+    //    }
+
     //}
 }

@@ -9,8 +9,9 @@ public class EncounterQuestSO : QuestDataSO
     [Header("EncounterQuest")]
     public string Goal;//목표
 
-    //public override void DebugQuests()
-    //{
-
-    //}
+    public override void DebugQuests()
+    {
+        Debug.Log($" - {QuestName} (최소레벨 {QuestRequiredLevel})");
+        Debug.Log($"{Goal}과 대화하기");
+    }
 }

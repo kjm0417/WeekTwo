@@ -9,9 +9,10 @@ public class MonsterQuestDataSO : QuestDataSO
     public string mosterName;
     public int monsterCount;
 
-    //public override void DebugQuests()
-    //{
-
-    //}
+    public override void DebugQuests()
+    {
+        Debug.Log($" - {QuestName} (최소레벨 {QuestRequiredLevel})");
+        Debug.Log($"{mosterName}를 {monsterCount}");
+    }
 }
 
